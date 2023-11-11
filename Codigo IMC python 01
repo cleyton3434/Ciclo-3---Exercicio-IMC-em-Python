@@ -1,0 +1,69 @@
+#codigo de IMC projeto
+
+
+import tkinter as tk
+
+def calcular_imc():
+    nome = entry_nome.get()
+    endereco = entry_endereco.get()
+
+    altura = float(entry_altura.get())
+    peso = float(entry_peso.get())
+
+    imc =  peso / (altura**2)
+    resultado_entry.delete(0, 'end')
+    resultado_entry.insert('end', f"Nome: {nome}\nEndereço: {endereco}\nIMC: {imc:.2f}")
+
+def reiniciar():
+    entry_nome.delete(0, 'end')
+    entry_endereco.delete(0, 'end')
+    entry_altura.delete(0, 'end')
+    entry_peso.delete(0, 'end')
+    resultado_entry.delete(0, 'end')
+
+def sair():
+    root.destroy()
+
+root = tk.Tk()
+root.title("Cálculo do IMC- indice de massa Corporal")
+
+
+frame = tk.Frame(root,bg='#CCCCCC')
+frame.pack(padx=50, pady=30)
+
+label_nome = tk.Label(frame, text="Nome do Paciente:" ,bg='#CCCCCC')  # Adicionando cor de fundo aos rótulos
+label_nome.grid(row=0, column=0)
+entry_nome = tk.Entry(frame)
+entry_nome.grid(row=0, column=1)
+
+label_endereco = tk.Label(frame, text=" Endereço Completo:" ,bg='#CCCCCC')# Adicionando cor
+label_endereco.grid(row=1, column=0)
+entry_endereco = tk.Entry(frame)
+entry_endereco.grid(row=1, column=1)
+
+label_altura = tk.Label(frame, text="Altura : (cm)",bg='#CCCCCC')# Adicionando cor
+label_altura.grid(row=3, column=0)
+entry_altura = tk.Entry(frame)
+entry_altura.grid(row=3, column=1)
+
+label_peso = tk.Label(frame, text="Peso: (kg)" ,bg='#CCCCCC')# Adicionando cor
+label_peso.grid(row=2, column=0)
+entry_peso = tk.Entry(frame)
+entry_peso.grid(row=2, column=1)
+
+
+calcular_button = tk.Button(frame, text="Calcular", command=calcular_imc, bg='lightgray')  # Adicionando cor de fundo aos botões
+calcular_button.grid(row=8, column=2)
+
+reiniciar_button = tk.Button(frame, text="Reiniciar", command=reiniciar, bg='lightgray')# Adicionando cor de fundo aos botões
+reiniciar_button.grid(row=8, column=3)
+
+sair_button = tk.Button(frame, text="Sair", command=sair, bg='lightgray')# Adicionando cor de fundo aos botões
+sair_button.grid(row=8, column=8)
+
+resultado_entry = tk.Entry(frame, width=80)
+resultado_entry.grid(row=4,column=5,columnspan=4,rowspan=4,padx=5,pady=5)
+
+
+root.mainloop()
+
